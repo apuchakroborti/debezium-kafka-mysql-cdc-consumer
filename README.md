@@ -6,7 +6,7 @@ $ tar -xvzf /path/to/the/kafka_2.12-2.4.0.tgz
 $ cd kafka_2.12-2.4.0
 \
 Setting up MySQL server: \
-https://debezium.io/documentation/reference/assemblies/cdc-mysql-connector/as_setup-the-mysql-server.html \
+https://debezium.io/documentation/reference/assemblies/cdc-mysql-connector/as_setup-the-mysql-server.html 
 
 Create a new MySql user: \
 $ mysql -u root -p \
@@ -38,7 +38,7 @@ Mysql > SELECT variable_value as "BINARY LOGGING STATUS (log-bin) ::"
 FROM information_schema.global_variables WHERE variable_name='log_bin'; \
 2.Confirm your changes by checking the binlog status once more. \
 Mysql > SELECT variable_value as "BINARY LOGGING STATUS (log-bin) ::"
-FROM information_schema.global_variables WHERE variable_name='log_bin'; \
+FROM information_schema.global_variables WHERE variable_name='log_bin'; 
 
 Confirm the GTID changes: \
 Mysql> show global variables like '%GTID%';\
@@ -73,10 +73,10 @@ value.converter=org.apache.kafka.connect.json.JsonConverter \
 
 Start the zookeeper: \
 $ cd /path/to/the/kafka_2.12-2.4.0 \
-$ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties \
+$ ./bin/zookeeper-server-start.sh ./config/zookeeper.properties 
 
 Start the kafka server: \
-$ ./bin/kafka-server-start.sh ./config/server.properties \
+$ ./bin/kafka-server-start.sh ./config/server.properties 
 
 Start the connector: \
 $ vi ./config/connect-standalone.properties
@@ -85,7 +85,7 @@ $ ./bin/connect-standalone.sh ./config/connect-standalone.properties ./workers/m
 
 Now the check the connector running or not.. \
 $ curl -s "http://localhost:8083/connectors" | jq '.[]' | xargs -I{dbserver1} curl -s "http://localhost:8083/connectors/"{dbserver1}"/status" | jq -c -M '[.name,.connector.state,.tasks[].state] |  
-join(":|:")'| column -s : -t| sed 's/"//g'| sort\
+join(":|:")'| column -s : -t| sed 's/"//g'| sort
 
 Output:\
 dbserver1 | RUNNING | RUNNING\
@@ -114,9 +114,9 @@ $ INSERT INTO Customers (first_name, last_name, age, address)
 VALUES ('Apu', 'Chakroborti', 26, 'abc');\
 \
 Then check the spring boot consumer\
-Before and After will be shown. \
+Before and After will be shown. 
 
 Clean up resources:\
 $ ctrl+c for zookeeper, kafka and connector \
-\
+
 
