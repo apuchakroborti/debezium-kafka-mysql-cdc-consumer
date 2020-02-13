@@ -6,7 +6,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.common.TopicPartition;
-import org.apache.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,7 +14,6 @@ import java.util.Properties;
 
 public class MyKafkaConsumer {
 
-    private static final Logger logger = Logger.getLogger(MyKafkaConsumer.class);
 
     private KafkaConsumer<String, String> kafkaConsumer;
 
@@ -43,7 +41,7 @@ public class MyKafkaConsumer {
                     //Logging the received message to the console.
 
                     System.out.println(message + "\n");
-                    logger.info("Received message: " + message);
+                    System.out.println("Received message: " + message);
 
 
                     Map before = JsonPath.read(message, "$.payload.before");
@@ -99,7 +97,7 @@ public class MyKafkaConsumer {
 
                         kafkaConsumer.commitSync(commitMessage);
 
-                        logger.info("Offset committed to Kafka.");
+                        System.out.println("Offset committed to Kafka.");
                     }
                 }
             }

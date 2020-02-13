@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.apache.log4j.Logger;
 
 import java.util.Properties;
 
@@ -25,7 +24,6 @@ public class SbMySqlCdcDebziumKafkaConsumerApplication implements CommandLineRun
 	@Value("${zookeeper.host}")
 	String zookeeperHost;
 
-	private static final Logger logger = Logger.getLogger(SbMySqlCdcDebziumKafkaConsumerApplication.class);
 
 
 	public static void main(String[] args)
@@ -50,7 +48,7 @@ public class SbMySqlCdcDebziumKafkaConsumerApplication implements CommandLineRun
 		consumerProperties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
 		Thread kafkaConsumerThread = new Thread(() -> {
-			logger.info("Starting Kafka consumer thread.");
+			System.out.println("Starting Kafka consumer thread.");
 
 			MyKafkaConsumer simpleKafkaConsumer = new MyKafkaConsumer(topicName, consumerProperties );
 
